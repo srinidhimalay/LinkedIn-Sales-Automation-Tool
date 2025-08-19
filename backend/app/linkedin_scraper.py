@@ -1,9 +1,16 @@
 # Real LinkedIn scraper using Selenium (headless, Edge)
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from dotenv import load_dotenv
+import os
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.edge.service import Service
 import time
+
+load_dotenv()
+
+linkedin_username = os.getenv('LINKEDIN_USERNAME')
+linkedin_password = os.getenv('LINKEDIN_PASSWORD')
 
 def find_prospects(campaign):
 
@@ -28,8 +35,8 @@ def find_prospects(campaign):
         # Wait for login form or check if already logged in
         wait = WebDriverWait(driver, 10)
         wait.until(EC.presence_of_element_located((By.ID, 'username')))
-        driver.find_element(By.ID, 'username').send_keys('srinidhimalay@gmail.com')
-        driver.find_element(By.ID, 'password').send_keys('Bluelock1>')
+        driver.find_element(By.ID, 'username').send_keys(linkedin_username)
+        driver.find_element(By.ID, 'password').send_keys(linkedin_password)
         driver.find_element(By.XPATH, '//button[@type="submit"]').click()
         print("[DEBUG] Submitted login form.")
         time.sleep(5)
