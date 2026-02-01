@@ -1,4 +1,4 @@
-
+#uvicorn app.main:app --reload
 
 from fastapi import FastAPI, BackgroundTasks, Response
 from . import models, schemas, nlp, linkedin_scraper, messaging, scheduler, database
